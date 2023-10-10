@@ -11,7 +11,7 @@ class TodoController extends Controller {
 	 */
 	public function index() {
 
-		$todos = Todo::orderBy('created_at', 'desc')->paginate(8);
+		$todos = Todo::orderBy('created_at', 'desc')->get();
 
 		return view('todos.index', [
 			'todos' => $todos
@@ -22,21 +22,44 @@ class TodoController extends Controller {
 	 * Show the form for creating a new resource.
 	 */
 	public function create() {
-		//
+		return view('todos.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 */
 	public function store(Request $request) {
-		//
+		
+		// dd("hi");
+
+		$rules = [
+			'title' => 'required|string|unique:todos,title|min:2',
+			'body'	=> 'required|string|max:500'
+		];
+
+		$messages = [
+			'title.unique' => 'Todo title is already in use (needs to be unique)'
+		];
+
+		$request->validate($rules, $messages);
+
+		$todo = new Todo;
+		$todo->title = $request->title;
+		$todo->body = $request->body;
+		$todo->save();
+
+		return redirect()
+			->route("todo.index")
+			->with('status', 'Created a new todo');
 	}
 
 	/**
 	 * Display the specified resource.
 	 */
 	public function show(string $id) {
-		//
+		$todo = Todo::findOrFail($id);
+
+		return view('todos.show', ['todo' => $todo]);
 	}
 
 	/**

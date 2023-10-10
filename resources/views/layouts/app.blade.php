@@ -12,5 +12,16 @@
 	</div>
 
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
+
+	@if (session('status'))
+		<div id="alert">{{session('status')}}</div>
+	@endif
+
+	<script>
+		let alert = document.getElementById('alert');
+		setTimeout(() => {
+			alert.remove();
+		}, 2000);
+	</script>
 </body>
 </html>
