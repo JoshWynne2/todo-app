@@ -66,20 +66,50 @@ class TodoController extends Controller {
 	 * Show the form for editing the specified resource.
 	 */
 	public function edit(string $id) {
-		//
+		
+		$todo = Todo::findOrFail($id);
+
+		return view('todos.edit', [
+			'todo' => $todo
+		]);
+
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 */
 	public function update(Request $request, string $id) {
-		//
+		
+		$rules = [
+			'title' => "required|string|unique:todos,title,{$id}|min:2",
+			'body'	=> 'required|string|max:500'
+		];
+
+		$messages = [
+			'title.unique' => 'Todo title is already in use (needs to be unique)'
+		];
+
+		$request->validate($rules, $messages);
+
+		$todo = todo::findOrFail($id);
+		$todo->title = $request->title;
+		$todo->body = $request->body;
+		$todo->save();
+
+		return redirect()
+			->route("todo.index")
+			->with('status', 'Edited a todo');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
 	public function destroy(string $id) {
-		//
+		$todo = Todo::findOrFail($id);
+		$todo->delete();
+
+		return redirect()
+			->route("todo.index")
+			->with('status', 'Todo Deleted!');
 	}
 }

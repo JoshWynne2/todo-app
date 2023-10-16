@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<h2> hi </h2>
-{{ $todo->title}}
+<h1> Single Todo Page </h1>
+<h2>{{ $todo->title}}</h2>
+<h3>{{ $todo->body}}</h3>
+<a href={{route('todo.edit', $todo)}}>
+<button class="btn btn-warning" type="button">Edit</button>
+</a>
+<form action="{{route('todo.destroy', $todo->id)}}" method="post">
+	@csrf
+	@method('DELETE')
+	<button class="btn btn-danger" type="submit">Delete</button>
+</form>
+
+
+<a href="{{ route('todo.index') }}"> Back </a>
 @endsection
