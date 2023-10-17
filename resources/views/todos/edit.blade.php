@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.todolay')
 
 @section('content')
 <h3> Edit Todo </h3>
 <form action="{{route('todo.update', $todo->id)}}" method="POST">
 	@csrf
-	@method('PUT')
+	@method('PUT');
 	
 	<div>
 		<label>Title</label>

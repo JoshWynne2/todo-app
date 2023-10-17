@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.todolay')
 
 @section('content')
 <h3> Create Todo </h3>
@@ -8,7 +8,7 @@
 
 	<div>
 		<label>Title</label>
-		<input type="text" name="title" id="title" value="{{$todo->title}}">
+		<input type="text" name="title" id="title" value="{{old('title')}}">
 
 		@if ($errors->has('title'))
 			<span>{{$errors->first('title')}}</span>
@@ -16,7 +16,7 @@
 	</div>
 	<div>
 		<label>Description</label>
-		<input type="text" name="body", id="body" value="{{$todo->title}}">
+		<input type="text" name="body", id="body" value="{{old('body')}}">
 		
 		@if ($errors->has('body'))
 			<span>{{$errors->first('body')}}</span>
