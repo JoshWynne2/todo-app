@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Auth;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,8 @@ class TodoFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(4),
-			'body' => $this->faker->text(100)
+			'body' => $this->faker->text(100),
+			'user_id' => 1
         ];
     }
 }

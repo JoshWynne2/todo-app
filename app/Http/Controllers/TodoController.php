@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 
@@ -17,7 +18,14 @@ class TodoController extends Controller {
 			'todos' => $todos
 		]);
 	}
+	
+	public function getMyTodos(){
+		$todos = Todo::where('user_id', '=', Auth::id())->get();
 
+		return view('todos.index', [
+			'todos' => $todos
+		]);
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 */

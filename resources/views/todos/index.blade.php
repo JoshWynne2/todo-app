@@ -2,7 +2,7 @@
 
 @section('content')
 <h1 class="text-xl">Todos</h1>
-<a href="{{route("todo.create")}}"> Create New Todo </a>
+<a href="{{route('todos.create')}}"> Create New Todo </a>
 <div class="w-75">
 <table class='table-fixed border-solid border-2 border-slate-400'>
 	<thead class="bg-slate-600"> 
@@ -22,7 +22,7 @@
 				<td class="px-3 w-2/6">{{ $todo->title }}</td>
 				<td class="px-3 w-2/6">{{ $todo->body }}</td>
 				<td class="px-3 w-1/6">{{ $todo->created_at }}</td>
-				<td class="px-3 w-1/6 text-center"><a href="{{route('todo.show', $todo->id)}}"> read more </a></td>
+				<td class="px-3 w-1/6 text-center"><a href="{{route('todos.show', $todo->id)}}"> read more </a></td>
 			</tr>
 
 		@empty

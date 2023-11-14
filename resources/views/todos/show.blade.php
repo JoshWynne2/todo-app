@@ -4,7 +4,7 @@
 <h1> Single Todo Page </h1>
 <h2>{{ $todo->title}}</h2>
 <h3>{{ $todo->body}}</h3>
-<a href={{route('todo.edit', $todo)}}>
+<a href={{route('todos.edit', $todo)}}>
 <button class="btn btn-blue" type="button">Edit</button>
 
 <form action="{{route('todo.destroy', $todo->id)}}" method="post">
@@ -14,5 +14,5 @@
 </form>
 
 
-<a href="{{ route('todo.index') }}"> Back </a>
+<a href="{{ route('todos.index') }}"> Back </a>
 @endsection

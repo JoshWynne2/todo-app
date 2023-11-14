@@ -2,7 +2,7 @@
 
 @section('content')
 <h3> Create Todo </h3>
-<form action="{{route('todo.store')}}" method="POST">
+<form action="{{route('todos.store')}}" method="POST">
 	@csrf
 	
 

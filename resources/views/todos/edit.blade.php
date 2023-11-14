@@ -2,7 +2,7 @@
 
 @section('content')
 <h3> Edit Todo </h3>
-<form action="{{route('todo.update', $todo->id)}}" method="POST">
+<form action="{{route('todos.update', $todo->id)}}" method="POST">
 	@csrf
 	@method('PUT');
 	
